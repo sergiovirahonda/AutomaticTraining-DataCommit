@@ -86,14 +86,14 @@ def load_data(args):
     
     print('Current directory:', flush=True)
     print(os.getcwdb(), flush=True)
-    entries = os.listdir('/root/AutomaticAITrainingWithCICD/COVID_RX/')
+    entries = os.listdir('/root/AutomaticTraining-Dataset/COVID_RX/')
     print(entries)
     print('Extracting files', flush=True)
 
-    file_1 = '/root/AutomaticAITrainingWithCICD/COVID_RX/normal_images.zip'
-    file_2 = '/root/AutomaticAITrainingWithCICD/COVID_RX/covid_images.zip'
-    file_3 = '/root/AutomaticAITrainingWithCICD/COVID_RX/viral_images.zip'
-    extract_to = '/root/AutomaticAITrainingWithCICD/COVID_RX/'
+    file_1 = '/root/AutomaticTraining-Dataset/COVID_RX/normal_images.zip'
+    file_2 = '/root/AutomaticTraining-Dataset/COVID_RX/covid_images.zip'
+    file_3 = '/root/AutomaticTraining-Dataset/COVID_RX/viral_images.zip'
+    extract_to = '/root/AutomaticTraining-Dataset/COVID_RX/'
 
     with zipfile.ZipFile(file_1, 'r') as zip_ref:
         zip_ref.extractall(extract_to)
@@ -107,11 +107,11 @@ def load_data(args):
     print('Files extracted', flush=True)
     print('Starting dataset transformation', flush=True)
 
-    normal = dataset_transformation('/root/AutomaticAITrainingWithCICD/COVID_RX/normal_images')[:5000]
+    normal = dataset_transformation('/root/AutomaticTraining-Dataset/COVID_RX/normal_images')[:5000]
     print('First image set created', flush=True)
-    covid = dataset_transformation('/root/AutomaticAITrainingWithCICD/COVID_RX/covid_images')[:5000]
+    covid = dataset_transformation('/root/AutomaticTraining-Dataset/COVID_RX/covid_images')[:5000]
     print('Second image set created', flush=True)
-    viral = dataset_transformation('/root/AutomaticAITrainingWithCICD/COVID_RX/viral_images')[:5000]
+    viral = dataset_transformation('/root/AutomaticTraining-Dataset/COVID_RX/viral_images')[:5000]
     print('Third image set created', flush=True)
 
     #Class combination
