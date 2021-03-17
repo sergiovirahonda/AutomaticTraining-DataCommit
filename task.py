@@ -149,10 +149,11 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--bucket-name',
                         type=str,
+                        default='automatictrainingcicd-aiplatform',
                         help='GCP bucket name')
     parser.add_argument('--epochs',
                         type=int,
-                        default=10,
+                        default=2,
                         help='Epochs number')
     args = parser.parse_args()
     return args
