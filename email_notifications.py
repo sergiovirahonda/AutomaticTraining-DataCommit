@@ -7,7 +7,7 @@ receiver = ['svirahonda@gmail.com'] #replace this by the owner's email address
 smtp_provider = 'smtp.gmail.com'
 smtp_port = 587
 smtp_account = 'svirahonda@gmail.com' #replace this by your stmp account email address
-smtp_password = 'your_smtp_password' #replace this by your smtp account password
+smtp_password = 'smtp_password' #replace this by your smtp account password
 # -----------------------------------------------------------------------------------------------
 
 def training_result(result,accuracy):
