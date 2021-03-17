@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gke-training-data-commit
+spec:
+  containers:
+  - name: data-commit
+    image: gcr.io/automatictrainingcicd/data-commit:latest
