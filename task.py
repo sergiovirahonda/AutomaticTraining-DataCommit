@@ -29,7 +29,7 @@ def start_training(args):
     # Loading splitted data
     X_train, X_test, y_train, y_test = data_utils.load_data(args)
 
-    # Initializing GPU if available
+    # Initializing GPU if available (if available)
     initialize_gpu()
 
     # Checking if there's any model saved at testing or production folders in GCS
