@@ -77,6 +77,8 @@ def train_prod_model(X_train, X_test, y_train, y_test,args):
             else:
                 print("Old model from production hasn't reached more than 0.90 of accuracy, proceeding to retrain.",flush=True)
                 cnn = load_model(model_name)
+                checkpoint = ModelCheckpoint(model_name, monitor='val_loss', verbose=1,save_best_only=True, mode='auto', save_freq="epoch")
+                print('Starting model training.',flush=True)
                 cnn.fit(X_train, y_train, epochs=args.epochs,validation_data=(X_test, y_test),callbacks=[checkpoint])
                 print('Old production model training has ended. ',flush=True)
                 model_loss, model_acc = cnn.evaluate(X_test, y_test,verbose=2)
@@ -94,8 +96,8 @@ def train_prod_model(X_train, X_test, y_train, y_test,args):
                     print("Old model from production hasn't reached more than 0.90 after re-training, proceeding to check if any model exists at /testing.",flush=True)
                     return
         except Exception as e:
-            print('Something went wrong when trying to retrain old production model. Exception: '+str(status)+'. Aborting automatic training.',flush=True)
-            email_notifications.exception('Something went wrong when trying to retrain old production model. Exception: '+str(status))
+            print('Something went wrong when trying to retrain old production model. Exception: '+str(e)+'. Aborting automatic training.',flush=True)
+            email_notifications.exception('Something went wrong when trying to retrain old production model. Exception: '+str(e))
             sys.exit(1) 
     else:
         email_notifications.exception('Something went wrong when trying to load old production model. Exception: '+str(model_gcs_prod[1]))
@@ -118,6 +120,8 @@ def train_test_model(X_train, X_test, y_train, y_test,args):
             else:
                 print("Old model from testing hasn't reached more than 0.90 of accuracy, proceeding to retrain.",flush=True)
                 cnn = load_model(model_name)
+                checkpoint = ModelCheckpoint(model_name, monitor='val_loss', verbose=1,save_best_only=True, mode='auto', save_freq="epoch")
+                print('Starting model training.',flush=True)
                 cnn.fit(X_train, y_train, epochs=args.epochs,validation_data=(X_test, y_test),callbacks=[checkpoint])
                 print('Old testing model training has ended. ',flush=True)
                 model_loss, model_acc = cnn.evaluate(X_test, y_test,verbose=2)
@@ -136,8 +140,8 @@ def train_test_model(X_train, X_test, y_train, y_test,args):
                     email_notifications.training_result('poor_metrics',model_acc) 
                     sys.exit(1)
         except Exception as e:
-            print('Something went wrong when trying to retrain old testing model. Exception: '+str(status)+'. Aborting automatic training.',flush=True)
-            email_notifications.exception('Something went wrong when trying to retrain old testing model. Exception: '+str(status))
+            print('Something went wrong when trying to retrain old testing model. Exception: '+str(e)+'. Aborting automatic training.',flush=True)
+            email_notifications.exception('Something went wrong when trying to retrain old testing model. Exception: '+str(e))
             sys.exit(1) 
     else:
         email_notifications.exception('Something went wrong when trying to load old testing model. Exception: '+str(model_gcs_test[1]))
