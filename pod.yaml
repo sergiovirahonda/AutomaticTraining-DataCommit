@@ -1,18 +1,20 @@
 apiVersion: batch/v1
-kind: Pod
+kind: Job
 metadata:
   name: gke-training-data-commit
 spec:
-  containers:
-  - name: data-commit
-    image: gcr.io/automatictrainingcicd/data-commit:latest
-    env:
-      - name: gmail_password
-        valueFrom:
-          secretKeyRef:
-            name: gmail-secrets
-            key: gmail_password
-      - name: email_address
-        value: svirahonda@gmail.com
   backoffLimit: 2
-  activeDeadlineSeconds: 300
+  activeDeadlineSeconds: 900
+  template:
+    spec:
+      containers:
+      - name: data-commit
+        image: gcr.io/automatictrainingcicd/data-commit:latest
+        env:
+          - name: gmail_password
+            valueFrom:
+              secretKeyRef:
+                name: gmail-secrets
+                key: gmail_password
+          - name: email_address
+            value: svirahonda@gmail.com
