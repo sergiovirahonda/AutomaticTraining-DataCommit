@@ -18,3 +18,4 @@ spec:
                 key: gmail_password
           - name: email_address
             value: svirahonda@gmail.com
+      restartPolicy: Never
