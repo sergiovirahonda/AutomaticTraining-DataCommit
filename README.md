@@ -1,3 +1,12 @@
+# Launch GKE cluster
+* with GPU
+```
+gcloud container clusters create training-cluster --num-nodes=2 --zone=us-central1-a --accelerator="type=nvidia-tesla-p100,count=1"  --machine-type="n1-highmem-2" --scopes="gke-default,storage-rw"
+```
+* Without GPU
+```
+gcloud container clusters create training-cluster --num-nodes=2 --zone=us-central1-a --machine-type="n1-highmem-2" --scopes="gke-default,storage-rw"
+```
 # DeepFakesTrainingContainer
 This repository is part of a project which seeks to explain how to build a Deep Fakes model from scratch. This repo contains the files required to train two Autoencoders using a Docker container which is Google AI Platform ready.
 
