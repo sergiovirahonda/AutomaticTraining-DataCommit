@@ -3,8 +3,8 @@ kind: Job
 metadata:
   name: gke-training-data-commit
 spec:
-  backoffLimit: 2
-  activeDeadlineSeconds: 900
+  backoffLimit: 1
+  activeDeadlineSeconds: 1800
   template:
     spec:
       containers:
