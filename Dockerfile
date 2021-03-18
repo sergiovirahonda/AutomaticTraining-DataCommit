@@ -13,8 +13,8 @@ RUN git clone https://github.com/sergiovirahonda/AutomaticTraining-Dataset.git
 ADD "https://www.random.org/cgi-bin/randbyte?nbytes=10&format=h" skipcache
 RUN git clone https://github.com/sergiovirahonda/AutomaticTraining-DataCommit.git
 
-RUN mv /root/AutomaticTraining-DataCommit/task.py /task.py
-RUN mv /root/AutomaticTraining-DataCommit/data_utils.py /data_utils.py
-RUN mv /root/AutomaticTraining-DataCommit/email_notifications.py /email_notifications.py
+RUN mv /root/AutomaticTraining-DataCommit/task.py /root
+RUN mv /root/AutomaticTraining-DataCommit/data_utils.py /root
+RUN mv /root/AutomaticTraining-DataCommit/email_notifications.py /root
 
 ENTRYPOINT ["python","task.py"]
